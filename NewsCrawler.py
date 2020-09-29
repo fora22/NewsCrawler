@@ -7,12 +7,15 @@ Original file is located at
     https://colab.research.google.com/drive/1LuNJG3M4rZunqkPH4L_7u6Ig8Y0PzQE8
 """
 
+import os
 import urllib.request
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
 from urllib.parse import quote
 
 import pandas as pd
+
+
 
 class NewsCrawler():
     def __init__(self, searchWord, countNews):
@@ -92,10 +95,17 @@ class NewsCrawler():
                 resultDF = pd.concat(resultDF, dfList[i])
 
         print(resultDF)
-        resultDF.to_excel('CrawlingData/' + self.searchKeyword + "약" + str(self.countNews) + "개" + '_News.xlsx')
+        resultDF.to_excel('CrawlingData/' + self.searchKeyword + " 약" + str(self.countNews) + "개" + '_News.xlsx')
 
-searchCommand = input("검색어를 입력하세요 : ")
-newsNumber = int(input("10개단위로 숫자를 입력해주세요(1 ~ N). : "))
-n = NewsCrawler(searchCommand, newsNumber)
-n.CrawlerStart()
+if __name__ == "__main__":
+    try:
+        if not(os.path.exists('CrawlingData')):
+            os.makedirs("CrawlingData")
+
+        searchCommand = input("검색어를 입력하세요 : ")
+        newsNumber = int(input("10개단위로 숫자를 입력해주세요(1 ~ N). : "))
+        n = NewsCrawler(searchCommand, newsNumber)
+        n.CrawlerStart()
+    except OSError:
+        print("Error")
 
