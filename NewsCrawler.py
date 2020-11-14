@@ -19,10 +19,7 @@ import pandas as pd
 
 class NewsCrawler():
     def __init__(self, searchWord, countNews):
-        if countNews >= 10:
-            self.countNews = countNews
-        else:
-            self.countNews = 10            
+        self.countNews = countNews
         self.searchWord = quote(searchWord)
         self.searchKeyword = searchWord
 
@@ -82,7 +79,8 @@ class NewsCrawler():
         dfList = []     # DataFrame을 보관하는 List
 
         # 뉴스페이지가 검색창에서 약 10개씩 나오므로 8을 빼서 URL에 들어가는 숫자를 맞춰줌
-        for newsPageNumber in range(1, self.countNews - 8, 10):
+        # for newsPageNumber in range(1, self.countNews - 8, 10):
+        while (len(dfList) < self.countNews):        # countNews만큼 기사가 모일때까지 반복문 돌림
             searchURL = ("https://search.naver.com/search.naver?&where=news&query="
             + self.searchWord + "&sm=tab_pge&sort=0&photo=0&field=0&reporter_article=&pd=0&ds=&de=&docid=&nso=so:r,p:all,a:all&mynews=0&cluster_rank=65&start=" 
             + str(newsPageNumber) + "&refresh_start=0")
