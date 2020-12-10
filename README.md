@@ -23,7 +23,7 @@
     - `pip install pandas`로 설치 가능(version은 크게 상관 없을 것으로 보임)
 
 ### Build and Run
-- Python을 실행할 수 있다면 그대로 실행하면 됨
+- Python을 실행할 수 있다면 그대로 실행하면 됨(Anaconda3 로 가상환경 만들기를 권장함 - `_env` 폴더에 만들어진 가상환경 파일이 있음)
 - Python을 실행할 수 없는 환경을 위해 exe 파일로 만들 예정
 ### Manual
 - 콘솔창에서 `검색어를 입력하세요 : `가 뜨면 검색하고 싶은 검색어 입력
@@ -35,4 +35,17 @@ MIT License
 - PR이나 issue도 괜찮습니다~
 ## Known issues
 ![_img](_img/naverNewsExample.PNG)
+
 - 노란색 하이라이트 처럼 네이버뉴스 형태로 변환 가능한 뉴스만 긁어 올 수 있음
+
+### Anaconda 가상환경
+
+`_env` 폴더에는 `NewsCrawlerEnv.yml` 파일이 있다. 이는 Python 을 Interpreter와 **Develope Environment**에 따른 Python 패키지가 들어있는 가상환경 파일이다. Anacodna3라는 프로그램을 통해 만들었으며, Anaconda3를 통해 Python 가상환경을 만들 수 있다.
+
+NewsCrawlerEnv.yml 로 가상환경을 생성한다.
+
+```
+conda env create -f ./environment.yml
+```
+
+설치되어 있던 모든 패키지가 자동으로 설치된다.
