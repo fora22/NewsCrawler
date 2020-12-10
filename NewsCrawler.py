@@ -80,6 +80,7 @@ class NewsCrawler():
 
         # 뉴스페이지가 검색창에서 약 10개씩 나오므로 8을 빼서 URL에 들어가는 숫자를 맞춰줌
         # for newsPageNumber in range(1, self.countNews - 8, 10):
+        newsPageNumber = 1
         while (len(dfList) < self.countNews):        # countNews만큼 기사가 모일때까지 반복문 돌림
             searchURL = ("https://search.naver.com/search.naver?&where=news&query="
             + self.searchWord + "&sm=tab_pge&sort=0&photo=0&field=0&reporter_article=&pd=0&ds=&de=&docid=&nso=so:r,p:all,a:all&mynews=0&cluster_rank=65&start=" 
@@ -100,6 +101,7 @@ class NewsCrawler():
 
             newsData = {"URL": urlList, "Date" : dateList, "Article" : newsList}
             dfList.append(pd.DataFrame(newsData))
+            newsPageNumber = newsPageNumber + 1
 
         for i in range(len(dfList)):
             if i == 0:
@@ -115,7 +117,7 @@ if __name__ == "__main__":
         os.makedirs("CrawlingData")
 
     searchCommand = input("검색어를 입력하세요 : ")
-    newsNumber = int(input("10개단위로 숫자를 입력해주세요(1 ~ N). : "))
+    newsNumber = int(input("몇 개의 뉴스를 검색하시겠습니까 : "))
     n = NewsCrawler(searchCommand, newsNumber)
     n.CrawlerStart()
     
